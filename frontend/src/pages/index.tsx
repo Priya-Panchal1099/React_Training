@@ -1,6 +1,7 @@
 import Image from "next/image";
 import localFont from "next/font/local";
 import UserRegister from "@/components/UserRegister";
+import RegistrationForm from "@/components/UserRegister/Register";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -17,7 +18,8 @@ export default function Home() {
   return (
     // <h1>Helloooooo</h1>
     <div>
-      <UserRegister></UserRegister>
+      {/* <UserRegister></UserRegister> */}
+      <RegistrationForm/>
     </div>
   );
 }

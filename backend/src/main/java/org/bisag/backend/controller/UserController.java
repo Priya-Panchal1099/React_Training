@@ -9,8 +9,12 @@ import java.util.Optional;
 import org.bisag.backend.model.User;
 import org.bisag.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,18 +22,24 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 
 
-
-
 @RestController
-@RequestMapping("/User")
+@RequestMapping("/user")
+@CrossOrigin("*")
 public class UserController {
 
     @Autowired
     private UserRepository userRepo;
     
     @PostMapping("/save")
-    public User createUser(@RequestBody User user) {   
-        return userRepo.save(user);
+    public ResponseEntity<User> createUser(@RequestBody User user) {  
+        try{
+        User savedUser=userRepo.save(user);
+        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
     }
 
     @GetMapping("/getUsers")

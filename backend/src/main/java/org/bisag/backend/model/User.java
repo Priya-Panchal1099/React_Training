@@ -19,7 +19,7 @@ public class User {
     private String username;
     private String firstname;
     private String lastname;
-    private long phonenumber;
+    private String phonenumber;
     private LocalDate birthdate;
     private String gender;
 
@@ -47,10 +47,10 @@ public class User {
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
-    public long getPhonenumber() {
+    public String getPhonenumber() {
         return phonenumber;
     }
-    public void setPhonenumber(long phonenumber) {
+    public void setPhonenumber(String phonenumber) {
         this.phonenumber = phonenumber;
     }
     public LocalDate getBirthdate() {
